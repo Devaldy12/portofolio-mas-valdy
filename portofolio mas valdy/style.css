@@ -1017,35 +1017,298 @@ a {
   fill: var(--wire-hover-color);
 }
 
+/* Mobile Navigation Button */
+.mobile-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+  padding: 0;
+}
+
+.mobile-nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-gold);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hamburger animations */
+.mock-header.mobile-active .mobile-nav-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mock-header.mobile-active .mobile-nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.mock-header.mobile-active .mobile-nav-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Keyframes for dropdown animation */
+@keyframes mobileMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Responsive adjustments for standard layout */
 @media (max-width: 900px) {
-  .hero-section, .about-section, .contact-section-inner {
+  .website-mode .hero-section, 
+  .website-mode .about-section, 
+  .website-mode .contact-section-inner {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
-  .projects-grid-2x2 {
+  
+  .website-mode .projects-grid-2x2 {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  .skills-layout {
+  
+  .website-mode .skills-layout {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  .hero-right {
+  
+  .website-mode .hero-right {
     order: -1;
   }
-  .mock-header {
+
+  .website-mode .website-container {
+    padding: 7rem 1.5rem 3rem 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header adjustments on mobile */
+  .website-mode .mock-header {
     width: calc(100% - 2rem);
+    height: 65px;
     padding: 0 1.5rem;
-    height: 60px;
+    top: 1rem;
+    border-radius: 32px;
   }
-  .mock-nav {
-    gap: 1rem;
+  
+  .website-mode .mock-logo {
+    font-size: 1.15rem;
   }
-  .header-actions-group {
+  
+  .website-mode .mobile-nav-toggle {
+    display: flex;
+  }
+  
+  /* Hide standard nav elements */
+  .website-mode .mock-header .mock-nav {
     display: none;
   }
-  .website-container {
-    padding: 7rem 1.5rem 3rem 1.5rem !important;
+  
+  .website-mode .mock-header .header-actions-group {
+    display: none;
+  }
+  
+  /* Display vertical dropdown menu when active */
+  .website-mode .mock-header.mobile-active .mock-nav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    align-items: center;
+    backdrop-filter: blur(15px);
+    box-shadow: var(--glass-shadow);
+    animation: mobileMenuFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    z-index: 99;
+  }
+  
+  .website-mode .mock-header.mobile-active .mock-nav-item {
+    font-size: 0.95rem;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+  
+  .website-mode .mock-header.mobile-active .header-actions-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(225, 195, 143, 0.08);
+    padding-top: 1.5rem;
+  }
+  
+  .website-mode .mock-header.mobile-active .mock-btn-cv {
+    width: 80%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  /* Hero Section Responsiveness */
+  .website-mode .hero-title {
+    font-size: 2.3rem;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    text-align: center;
+  }
+  
+  .website-mode .hero-tag {
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 0.8rem;
+  }
+  
+  .website-mode .hero-subtitle {
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .website-mode .hero-desc {
+    text-align: center;
+    margin: 0 auto 2rem auto;
+    font-size: 0.88rem;
+  }
+  
+  .website-mode .hero-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .website-mode .hero-btn-primary,
+  .website-mode .hero-btn-secondary {
+    width: 80%;
+    text-align: center;
+    padding: 12px 0;
+  }
+  
+  .website-mode .avatar-frame {
+    width: 220px;
+    height: 220px;
+    padding: 1rem;
+  }
+  
+  .website-mode .avatar-initials {
+    font-size: 3rem;
+  }
+
+  /* About Section Responsiveness */
+  .website-mode .section-title {
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+    text-align: center;
+  }
+  
+  .website-mode .section-badge {
+    text-align: center;
+  }
+  
+  .website-mode .about-desc {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  .website-mode .portrait-wrapper {
+    max-width: 260px;
+    height: 330px;
+  }
+  
+  .website-mode .portrait-placeholder span {
+    font-size: 2.5rem;
+  }
+  
+  .website-mode .about-cta-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Skills Section Responsiveness */
+  .website-mode .skills-card {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .website-mode .skills-footer {
+    justify-content: center;
+  }
+  
+  .website-mode .about-btn-next {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Projects Section Responsiveness */
+  .website-mode .projects-intro {
+    text-align: center;
+  }
+  
+  .website-mode .project-card-compact {
+    padding: 1rem;
+  }
+  
+  .website-mode .project-image-wrapper {
+    height: 150px;
+  }
+
+  /* Contact Section Responsiveness */
+  .website-mode .contact-btn-submit {
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+  }
+  
+  .website-mode .contact-right {
+    padding: 1.8rem;
+  }
+  
+  .website-mode .contact-input,
+  .website-mode .contact-textarea {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .website-mode .website-container {
+    padding: 6.5rem 1rem 2rem 1rem !important;
+  }
+  
+  .website-mode .hero-title {
+    font-size: 2rem;
+  }
+  
+  .website-mode .hero-btn-primary,
+  .website-mode .hero-btn-secondary {
+    width: 100%;
+  }
+  
+  .website-mode .mock-header.mobile-active .mock-btn-cv {
+    width: 100%;
+  }
+  
+  .website-mode .section-title {
+    font-size: 1.6rem;
   }
 }

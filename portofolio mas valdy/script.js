@@ -26,6 +26,15 @@ window.addEventListener('DOMContentLoaded', () => {
       triggerSubmitSim();
     });
   }
+
+  // 3. Mobile Navigation Menu Toggle
+  const toggleBtn = document.querySelector('.mobile-nav-toggle');
+  const header = document.querySelector('.mock-header');
+  if (toggleBtn && header) {
+    toggleBtn.addEventListener('click', () => {
+      header.classList.toggle('mobile-active');
+    });
+  }
 });
 
 // Simulate form submission and redirect to home with success state
